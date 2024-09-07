@@ -1,0 +1,48 @@
+<h1>今日のご飯</h1>
+<h3>新規投稿</h3>
+<%= form_for @tweet do |f| %>
+
+  <div class="field">
+    <%= f.label :ご飯の名前 %>
+    <%= f.text_field :name, :size => 30 %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :時間帯  %>
+    <%= f.select :eattime, 
+    [["朝食", "朝食"], 
+    ["昼食", "昼食"], 
+    ["夕食", "夕食"],
+    ["夜食", "夜食"],
+    ["おやつ", "おやつ"],
+    ["間食", "間食"],
+    ["ブランチ", "ブランチ"]], include_blank: "選択して下さい" %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :値段・費用  %>
+    <%= f.number_field :price, :size => 10 %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :住所  %>
+    <%= f.text_area :address, :size => "30x2" %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :説明  %>
+    <%= f.text_area :about, :size => "30x2" %>
+  </div>
+  <div class="field">
+  <%= f.label :画像 %>
+  <%= f.file_field :image %>
+</div>
+  <%= f.submit "投稿する" %>
+<% end %>
+
+<%= link_to "一覧に戻る", tweets_path %>
+

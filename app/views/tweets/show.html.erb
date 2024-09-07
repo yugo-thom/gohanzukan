@@ -1,0 +1,10 @@
+<h1>ご飯図鑑</h1>
+<h3>ご飯詳細</h3>
+<div class="tweet">
+  <p><%= @tweet.created_at %></p>
+</div>
+
+<%= link_to "ご飯一覧に戻る", tweets_path %>
+
+<%= link_to "編集する", edit_tweet_path(@tweet.id) %>
+

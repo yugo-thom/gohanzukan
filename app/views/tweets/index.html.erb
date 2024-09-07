@@ -1,0 +1,51 @@
+<h1>ご飯</h1>
+<h3>一覧ページ</h3>
+<%= link_to "新規投稿へ", tweets_new_path %>
+<div class="tweets-container">
+  <% @tweets.each do |t| %>
+    <div class="tweet">
+    <% if t.image.attached? %>
+    <%= image_tag t.image, size: '250x200'%>
+<% end %>
+   
+      <%= t.name %>
+      <%= t.address %>
+      <%= t.about %>
+      <%= t.price %>
+    </div>
+  <% end %>
+</div>
+
+<h3>ご飯一覧</h3>
+
+<!--ここから-->
+<h3>投稿を検索</h3>
+ <%= form_tag({controller:"tweets",action:"index"}, method: :get) do %>
+   <%= text_field_tag :search %>
+   <%= submit_tag '検索する'  %>
+<% end %>
+<!--ここまで-->
+
+<%= link_to "新規投稿へ", tweets_new_path %>
+
+
+
+<h1>ご飯図鑑</h1>
+<h3>ご飯一覧</h3>
+<%= link_to "新規投稿へ", tweets_new_path %>
+<div class="tweets-container">
+  <% @tweets.each do |t| %>
+    
+    <div class="tweet">
+  <%= image_tag t.image_url, size: "250x200" if t.image? %>
+
+  <%= t.created_at %>
+    <%= link_to "詳細へ", tweet_path(t.id) %>  
+    <% if user_signed_in? && current_user.id == t.user_id %>
+      <%= link_to "編集する", edit_tweet_path(t.id) %>
+      <%= link_to "削除する", tweet_path(t.id), method: :delete %>
+    <% end %> 
+  </div>
+  <% end %>
+</div>
+
